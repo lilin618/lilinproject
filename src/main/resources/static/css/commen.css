@@ -1,0 +1,27 @@
+body{
+ background-image:url(/static/img/01.jpg);
+}
+h1{
+	text-align: center;
+	color:#00FFFF;
+	font-weight: bolder;
+	font-family: "宋体";
+	line-height: 70px;
+}
+.col-lg-6{
+	margin-top: 10%;
+	margin-left: auto;
+	margin-right: auto;
+	}
+.form-control{
+	margin-bottom: 20px;
+	width: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.btn-primary{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
