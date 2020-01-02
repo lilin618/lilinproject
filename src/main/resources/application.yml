@@ -1,7 +1,6 @@
-
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/xuan?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=GMT%2B8&useSSL=false
     username: root
     password: admin
@@ -24,6 +23,10 @@ spring:
     static-path-pattern: /static/**
   resources:
     static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java,src/main/resources
 
   jpa:
     hibernate:

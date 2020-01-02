@@ -1,0 +1,79 @@
+body{
+ background-image:url(../img/01.jpg);	
+}
+a{
+	color: white;
+	text-decoration: none;
+}
+.col-lg-6 h1{
+	text-align: center;
+	color:white;
+	font-weight: bolder;
+	font-family: "宋体";
+	padding: 30px 0;
+}
+p{
+	font-size: 20px;
+}
+.footer{
+	line-height: 40px;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	background-color: #40AFFE;
+}
+.col-lg-6{
+	width: 400px;
+	height: 460px;
+	/* background-color: rgba(255,255,255,0.7); */
+	/* 渐变背景颜色 */
+	 background-image: -moz-linear-gradient( 90deg, rgb(23,101,174) 0%, rgb(110,233,251) 100%);
+	 background-image: -webkit-linear-gradient( 90deg, rgb(23,101,174) 0%, rgb(110,233,251) 100%);
+	 background-image: -ms-linear-gradient( 90deg, rgb(23,101,174) 0%, rgb(110,233,251) 100%);
+
+	margin-top: 7%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 50px;
+	}
+.form-control{
+	margin-bottom: 40px;
+	width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.btn-primary{
+	margin-top: 20px;
+	margin-right: 40px;
+	margin-left: 100px;
+}
+.button{
+	width: 300px;
+	position: relative;
+	/* background-color: #00FFFF; */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.button a{
+	color: white;
+	text-decoration: none;
+	position: absolute;
+	bottom: 0;
+}
+
+.register{
+	display: block;
+	width: 300px;
+	text-align: center;
+	position: absolute;
+	bottom: 10px;
+	margin-left: 20px;
+}
+
+.register:hover{
+	color: white;
+	text-decoration: none;
+}

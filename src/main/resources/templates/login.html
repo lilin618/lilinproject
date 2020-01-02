@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link th:href="@{/static/css/bootstrap.css}" rel="stylesheet"/>
+		<link th:href="@{/static/css/login.css}" rel="stylesheet"/>
+		<script th:src="@{/static/js/jquery-3.1.4.js}"></script>
+		<script th:src="@{/static/js/layui/layui.all.js}"></script>
+		<script th:src="@{/static/js/bootstrap.js}"></script>
+	</head>
+	<body>
+		<div class="col-lg-6" >
+			<h1>欢迎登录</h1>
+			<input class="form-control" type="text" id="username" placeholder="请填写用户名"/>
+			<input class="form-control" type="password" id="pwd" placeholder="请填写密码"/>
+			
+			<div class="button">
+				<button class="btn-primary btn-lg" id="btn">登录</button>
+				<a href="#">忘记秘密</a>
+			</div>
+			<a class="register" th:href="register">&gt;&gt;前往注册</a>
+		</div>
+		<footer class="footer">
+			<!-- <p>作者：****</p>
+			<p>时间：2020-1-1</p> -->
+			<span> © 2019-2020 702工作室  ****** 备案号：********</span>
+		</footer>
+		<script>
+			$("#btn").click(function(){
+				var username = $("#username").val();
+				var pwd = $("#pwd").val();
+				if(username === '' || pwd === ''){
+					layer.alert('请填写信息！');
+					return false;
+				}
+				$.ajax({
+					type:'post',
+					url:'/UserLogin',
+					data:{"username":username,"pwd":pwd},
+					success:function (data) {
+						if(data === 'success'){
+							layer.alert('登录成功，后续页面正在开发，敬请期待！');
+						}else if(data === 'NotIsVaild'){
+							layer.alert('该账户已被锁定！');
+						}
+						else if(data === 'fail'){
+							layer.alert('密码错误，请检查后重试！');
+						}else if(data === 'NotFoundUser'){
+							layer.alert('此用户不存在！');
+						}else{
+							layer.alert('系统异常，请稍后再试！');
+						}
+					},
+					error:function () {
+						layer.alert('登录异常，请稍后再试！');
+					}
+				});
+			});
+		</script>
+		
+	</body>
+</html>
