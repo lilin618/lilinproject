@@ -20,6 +20,8 @@ public class User{
   private String birthDay;
   @Column
   private String address;
+  @Column
+  private String email;
   @Column(name = "isVaild")
   private String isVaild;
   @Column

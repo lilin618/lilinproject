@@ -32,6 +32,10 @@
                 <input class="form-control" type="text" id="pwd2"/>
             </div>
             <div class="a">
+                <sapn class="input-group-addon">邮箱</sapn>
+                <input class="form-control" type="text" id="email"/>
+            </div>
+            <div class="a">
                 <sapn class="input-group-addon">请填写出生日期</sapn>
                 <input class="form-control" id="birthD" type="date"/>
             </div>
@@ -44,10 +48,47 @@
 
 			<button class="btn-primary btn-lg" id="btn">注册</button>
 		</div>
+
+        <div id="pwdiv" style="display:none!important">
+            <div class="mibao">
+                <span>用户名</span>
+                <input class="form-control" id="userN" type="text" placeholder="请填写用户名"/>
+            </div>
+            <div class="mibao" style="margin-top: 0;">
+                <span>问题</span>
+                <input class="form-control" id="question" type="text" placeholder="请填写问题"/>
+            </div>
+            <div class="mibao" style="margin-top: 0;">
+                <span>答案</span>
+                <input class="form-control" id="answer" type="text" placeholder="请填写答案"/>
+            </div>
+            <button class="btn-primary " id="pwbtn" style="margin-left: 190px;">提交</button>
+        </div>
 		
 		<script>
 
-
+            $("#pwbtn").click(function () {
+                var username = $("#userN").val();
+                var question = $("#question").val();
+                var answer = $("#answer").val();
+                $.ajax({
+                    type:'post',
+                    url:'/addQuestion',
+                    data:{"question":question,"answer":answer,"username":username},
+                    success:function (data) {
+                        if(data === 'ok'){
+                            layer.alert("设置密保问题成功！");
+                            window.location.href="/login";
+                        }else if(data === 'fail'){
+                            layer.alert("设置密保失败！");
+                        }else{
+                            layer.alert(data);
+                        }
+                    }
+                });
+            });
+            
+            
 			$('#distpicker1').distpicker({
 				autoSelect: false
 			});
@@ -98,25 +139,35 @@
                 var username = $("#username").val();
                 var pwd1 = $("#pwd1").val();
                 var pwd2 = $("#pwd2").val();
+                var email = $("#email").val();
                 var birthDay = $("#birthD").val();
                 var pro = $("#pro").val();
                 var city = $("#city").val();
                 var dist = $("#dist").val();
                 // console.log(username+"--"+birthDay+"--"+pwd1+"--"+pwd2+"--"+pro+city+dist);
-                if(username === '' || pwd1 === '' || pwd2 === '' || pro === '' || birthDay === '' || city === ''){
+                if(username === '' || pwd1 === '' || pwd2 === '' || email === '' || pro === '' || birthDay === '' || city === ''){
                     layer.alert("请补全信息！");
                     return false;
                 }
                 $.ajax({
                     type:'post',
                     url:'/UserRegister',
-                    data:{"username":username,"pwd":pwd1,"birthDay":birthDay,"address":pro+city+dist},
+                    data:{"username":username,"pwd":pwd1,"email":email,"birthDay":birthDay,"address":pro+city+dist},
                     success:function (data) {
                         if(data === 'ok'){
-                            layer.confirm('注册成功,是否跳转登录页面！',{btn:['确定','取消']},function () {
-                                window.location.href="/login";
+                            layer.confirm('注册成功,是否设置密保问题！',{btn:['确定','取消']},function () {
+                                layer.open({
+                                    type: 1,
+                                    title:'设置密保',
+                                    skin: 'layui-layer-demo', //样式类名
+                                    closeBtn: 1, //不显示关闭按钮
+                                    anim: 2,
+                                    area: ['430px', '290px'],
+                                    shadeClose: true, //开启遮罩关闭
+                                    content: $("#pwdiv")
+                                });
                             },function () {
-                                layer.msg('您已点击取消，请手动进入登录页面！');
+                                window.location.href="/login";
                             });
 
                         }else{

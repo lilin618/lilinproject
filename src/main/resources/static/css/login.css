@@ -73,7 +73,25 @@ p{
 	margin-left: 20px;
 }
 
-.register:hover{
+.register:hover {
 	color: white;
 	text-decoration: none;
 }
+
+.mibao {
+	margin-top: 20px;
+	/* background-color: #0000FF; */
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+}
+
+.mibao span {
+	display: block;
+	width: 60px;
+	margin-right: 10px;
+	float: left;
+	line-height: 40px;
+}
+

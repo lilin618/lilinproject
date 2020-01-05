@@ -17,9 +17,25 @@
 			
 			<div class="button">
 				<button class="btn-primary btn-lg" id="btn">登录</button>
-				<a href="#">忘记秘密</a>
+				<a href="#" id="forgetPw">忘记秘密</a>
 			</div>
 			<a class="register" th:href="register">&gt;&gt;前往注册</a>
+		</div>
+		<div id="forgetPwDiv" style="display:none!important">
+			<div class="mibao">
+				<span>用户名</span>
+				<input class="form-control" id="userN" type="text" placeholder="请输入用户名"/>
+			</div>
+			<div class="mibao" style="margin-top: 0;">
+				<span>问题</span>
+				<input class="form-control" id="question" type="text"  readonly="readonly"/>
+			</div>
+			<div class="mibao" style="margin-top: 0;">
+				<span>答案</span>
+				<input class="form-control" id="answer" type="text" placeholder="请填写答案"/>
+			</div>
+			<button class="btn-primary " id="pwbtn" style="margin-left: 190px;">下一步</button>
+		</div>
 		</div>
 		<footer class="footer">
 			<!-- <p>作者：****</p>
@@ -27,6 +43,65 @@
 			<span> © 2019-2020 702工作室  ****** 备案号：********</span>
 		</footer>
 		<script>
+			
+			$("#userN").on('change',function () {
+				// $("#question").val("aaa");
+				$.ajax({
+					type:'post',
+					url:"/getQuestion",
+					data:{"username":$("#userN").val()},
+					success:function (data) {
+						if(data === null || data === ''){
+							layer.alert("该用户未设置密保问题!");
+							$("#question").val('');
+						}else {
+							$("#question").val(data.question);
+						}
+					},
+					error:function () {
+						layer.alert("系统异常，请稍后再试！");
+					}
+				});
+			});
+			
+			$("#pwbtn").click(function () {
+				var username = $("#userN").val();
+				var answer = $("#answer").val();
+				if(answer === '' || answer === null){
+					layer.alert("请输入回答！");
+					return false;
+				}
+				$.ajax({
+					type:'post',
+					url:'/verifyQuestion',
+					data:{"username":username,"answer":answer},
+					success:function (data) {
+						if (data === 'ok'){
+							layer.alert("验证成功！");
+						}else{
+							layer.alert("回答错误！");
+							$("#answer").val('');
+						}
+					},
+					error:function () {
+						layer.alert("系统异常，请稍后再试！");
+					}
+				})
+			})
+			
+			$("#forgetPw").click(function () {
+				layer.open({
+					type: 1,
+					title:'忘记密码',
+					skin: 'layui-layer-demo', //样式类名
+					closeBtn: 1, //不显示关闭按钮
+					anim: 2,
+					area: ['430px', '360px'],
+					shadeClose: true, //开启遮罩关闭
+					content: $("#forgetPwDiv")
+				});
+			})
+			
 			$("#btn").click(function(){
 				var username = $("#username").val();
 				var pwd = $("#pwd").val();
