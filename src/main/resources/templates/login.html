@@ -98,7 +98,12 @@
 					anim: 2,
 					area: ['430px', '360px'],
 					shadeClose: true, //开启遮罩关闭
-					content: $("#forgetPwDiv")
+					content: $("#forgetPwDiv"),
+                    success:function () {
+                        $('#userN').val('');
+                        $('#question').val('');
+                        $('#answer').val('');
+                    }
 				});
 			})
 			

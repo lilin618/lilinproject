@@ -77,8 +77,10 @@
                     data:{"question":question,"answer":answer,"username":username},
                     success:function (data) {
                         if(data === 'ok'){
-                            layer.alert("设置密保问题成功！");
-                            window.location.href="/login";
+                            layer.alert("设置密保问题成功,3秒后自动跳转到登录页！");
+                            window.setInterval(function () {
+                                window.location.href="/login";
+                            },1000*3);
                         }else if(data === 'fail'){
                             layer.alert("设置密保失败！");
                         }else{
