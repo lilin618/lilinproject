@@ -108,6 +108,16 @@
 			})
 			
 			$("#btn").click(function(){
+				doLogin();
+			});
+			$("#btn").bind('keydown',function (e) {
+				var theEvent = e || window.event;
+				var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+				if (code == 13) {
+					doLogin();
+				}
+			})
+			function doLogin() {
 				var username = $("#username").val();
 				var pwd = $("#pwd").val();
 				if(username === '' || pwd === ''){
@@ -120,7 +130,8 @@
 					data:{"username":username,"pwd":pwd},
 					success:function (data) {
 						if(data === 'success'){
-							layer.alert('登录成功，后续页面正在开发，敬请期待！');
+							window.location='indexPage';
+							// layer.alert('登录成功，后续页面正在开发，敬请期待！');
 						}else if(data === 'NotIsVaild'){
 							layer.alert('该账户已被锁定！');
 						}
@@ -136,7 +147,7 @@
 						layer.alert('登录异常，请稍后再试！');
 					}
 				});
-			});
+			}
 		</script>
 		
 	</body>

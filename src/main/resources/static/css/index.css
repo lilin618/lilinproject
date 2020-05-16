@@ -1,0 +1,18 @@
+body{margin: 0;}
+a{color: black;text-decoration: none;}
+ul{list-style-type: none;margin: 0;padding: 0;}
+.header{
+    width: calc(100% - 800px);
+    height: 1000px;
+    padding: 40px 400px 0px 400px;
+    background-color: azure;
+    background-image: url("/static/img/img1.jpg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.header img{width: 80px;float: left;}
+.header a{color: white;font-size: 20px;line-height: 80px;}
+.header ul{float: right;}
+.header li{float: left;padding-left: 100px;}
+.header a:hover{color: #d41717;}

@@ -28,5 +28,4 @@ public class User{
   private String salt;
   @Column(name = "createDate")
   private String createDate;
-
 }

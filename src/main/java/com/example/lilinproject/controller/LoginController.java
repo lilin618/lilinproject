@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,14 +33,14 @@ public class LoginController {
     public String registerPage(){
         return "register";
     }
-    @RequestMapping("/login")
+    @RequestMapping({"/login","/"})
     public String login(){
         return "login";
     }
 
     @PostMapping("/UserLogin")
     @ResponseBody
-    public String UserLogin(HttpServletRequest request, HttpSession session){
+    public String UserLogin(HttpServletRequest request, HttpSession session, ModelAndView mv){
         String username = request.getParameter("username");
         String pwd = request.getParameter("pwd");
         String msg = "error";

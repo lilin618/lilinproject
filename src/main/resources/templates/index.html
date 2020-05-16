@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/static/css/index.css}" rel="stylesheet"/>
+<script th:src="@{/static/js/jquery-3.1.4.js}"></script>
+<script th:src="@{/static/js/layui/layui.all.js}"></script>
+<title>首页</title>
+<body>
+<div class="header">
+        <img src="static/img/702logo-2.png">
+        <a th:href="@{login}"><span style="font-size: 20px;padding-left: 50px;padding-top: 20px;color: #9fcdff;" th:text="${userName}"></span></a>
+        <ul>
+            <li><a href="#" onclick="index()">首页</a></li>
+            <li><a href="#" onclick="yewufanwei()">业务范围</a></li>
+            <li><a href="#" onclick="producCenter()">产品中心</a></li>
+            <li><a href="#" onclick="doWo()">关于我们</a></li>
+            <li><a href="#" onclick="callWe()">联系我们</a></li>
+        </ul>
+    <div class="clearfix"></div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    
+    function index() {
+        window.location.reload();
+    }
+
+    function yewufanwei() {
+        layer.alert('业务范围');
+    }
+
+    function producCenter() {
+        layer.alert('产品中心');
+    }
+
+    function doWo() {
+        layer.alert('关于我们');
+    }
+
+    function callWe() {
+        layer.alert('联系我们');
+    }
+</script>
